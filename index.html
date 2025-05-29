@@ -1,0 +1,2188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HussleAI – Intelligent AI Agents for Business Automation</title>
+    <meta name="description" content="Boost your business with AI agents for sales, marketing, and support. Book a free demo with HussleAI today—no coding required.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="favhub.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favhub.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favhub.png">
+    <meta name="theme-color" content="#00BFFF">
+    <style>
+        :root {
+            --primary-color: #8B5CF6;
+            --primary-light: #A78BFA;
+            --primary-dark: #7C3AED;
+            --dark-bg: #0F0F0F;
+            --dark-surface: #1A1A1A;
+            --dark-surface-2: #252525;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --text-muted: #888888;
+            --border-color: #333333;
+            --gradient-1: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+            --gradient-2: linear-gradient(135deg, #0F0F0F 0%, #1A1A1A 100%);
+        }
+
+        [data-theme="light"] {
+            --dark-bg: #ffffff;
+            --dark-surface: #f8f9fa;
+            --dark-surface-2: #e9ecef;
+            --text-primary: #121212;
+            --text-secondary: #495057;
+            --text-muted: #6c757d;
+            --border-color: #dee2e6;
+            --gradient-2: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Subtle Background Animations */
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .shape {
+            position: absolute;
+            background: var(--primary-color);
+            border-radius: 50%;
+            opacity: 0.08;
+            animation: float 20s infinite linear;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 25s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            left: 70%;
+            animation-delay: 5s;
+            animation-duration: 30s;
+        }
+
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            left: 40%;
+            animation-delay: 10s;
+            animation-duration: 20s;
+        }
+
+        .shape:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            left: 80%;
+            animation-delay: 15s;
+            animation-duration: 35s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.08;
+            }
+            90% {
+                opacity: 0.08;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Enhanced Particle Effect */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            opacity: 0.7;
+            box-shadow: 0 0 6px var(--primary-color);
+            animation: particle-float 12s infinite linear;
+        }
+
+        .particle:nth-child(even) {
+            width: 2px;
+            height: 2px;
+            opacity: 0.5;
+            animation-duration: 15s;
+        }
+
+        .particle:nth-child(3n) {
+            width: 4px;
+            height: 4px;
+            opacity: 0.8;
+            animation-duration: 10s;
+        }
+
+        @keyframes particle-float {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+                transform: scale(1);
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-10px) translateX(50px) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Header */
+        header {
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="light"] header {
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .theme-toggle {
+            background: var(--dark-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 1rem;
+            color: var(--text-primary);
+        }
+
+        .theme-toggle:hover {
+            background: var(--dark-surface-2);
+            transform: rotate(180deg);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn-secondary:hover::before {
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+        }
+
+        .btn-secondary:hover {
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-2);
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: slideInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+            animation: slideInUp 1s ease-out 0.4s both;
+        }
+
+        .hero-buttons .btn-primary {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+        }
+
+        .hero-buttons .btn-secondary {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            background: var(--dark-surface);
+            padding: 80px 0;
+        }
+
+        .comparison-table {
+            background: var(--dark-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+
+        .comparison-table:hover {
+            transform: translateY(-5px);
+        }
+
+        .table-header {
+            background: var(--gradient-1);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .table-header h3 {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .table-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .table-column {
+            padding: 2rem;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .table-column:last-child {
+            border-right: none;
+        }
+
+        .table-column h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--text-primary);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: var(--dark-surface);
+            padding-left: 1rem;
+            border-radius: 8px;
+        }
+
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-item:hover .feature-icon {
+            transform: scale(1.2);
+        }
+
+        .feature-icon.check {
+            color: #10b981;
+        }
+
+        .feature-icon.cross {
+            color: #ef4444;
+        }
+
+        /* Interactive Demo */
+        .demo-section {
+            padding: 80px 0;
+            background: var(--dark-bg);
+        }
+
+        .demo-container {
+            background: var(--dark-surface);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            max-width: 800px;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+
+        .demo-container:hover {
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.1);
+        }
+
+        .demo-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .demo-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: white;
+            font-weight: 600;
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(139, 92, 246, 0);
+            }
+        }
+
+        .chat-message {
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .chat-message:nth-child(1) { animation-delay: 0.5s; }
+        .chat-message:nth-child(2) { animation-delay: 1s; }
+        .chat-message:nth-child(3) { animation-delay: 1.5s; }
+        .chat-message:nth-child(4) { animation-delay: 2s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-user {
+            text-align: right;
+        }
+
+        .message-bubble {
+            display: inline-block;
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            max-width: 70%;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .message-bubble:hover {
+            transform: scale(1.02);
+        }
+
+        .message-user .message-bubble {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .message-ai .message-bubble {
+            background: var(--dark-surface-2);
+            color: var(--text-primary);
+        }
+
+        /* Setup Steps */
+        .setup-section {
+            background: var(--dark-surface);
+            padding: 80px 0;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step-card {
+            background: var(--dark-bg);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .step-card:hover::before {
+            left: 100%;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin: 0 auto 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover .step-number {
+            transform: rotate(360deg) scale(1.1);
+        }
+
+        .step-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .step-card p {
+            color: var(--text-secondary);
+        }
+
+        /* Industry Use Cases */
+        .industries-section {
+            padding: 80px 0;
+            background: var(--dark-bg);
+        }
+
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .industry-card {
+            background: var(--dark-surface);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .industry-card::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .industry-card:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .industry-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.1);
+        }
+
+        .industry-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .industry-card:hover .industry-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .industry-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .industry-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            background: var(--dark-surface);
+            padding: 80px 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            background: var(--dark-bg);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.1);
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        .testimonial-content::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary-color);
+            position: absolute;
+            top: -1rem;
+            left: -1rem;
+            opacity: 0.3;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial:hover .author-avatar {
+            transform: scale(1.1);
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Booking Form */
+        .booking-section {
+            padding: 80px 0;
+            background: var(--dark-bg);
+        }
+
+        .booking-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--dark-surface);
+            padding: 3rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .booking-container:hover {
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--gradient-1);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-surface-2);
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-left: 0;
+        }
+
+        .footer-section a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+            transform: translateY(-50%);
+        }
+
+        .footer-section a:hover::before {
+            width: 20px;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-color);
+            padding-left: 25px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: var(--dark-surface);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-3px) rotate(10deg);
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+
+        .newsletter-form button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--dark-surface);
+            border-top: 1px solid var(--border-color);
+            padding: 1rem;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 1rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-menu a:hover {
+            color: var(--primary-color);
+            background: var(--dark-bg);
+        }
+
+        /* Enhanced Form Styling */
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 100px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Enhanced Date and Time Picker Styling */
+        .datetime-wrapper {
+            position: relative;
+        }
+
+        .datetime-wrapper::before {
+            content: '';
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'/%3E%3C/svg%3E") no-repeat center;
+            mask-size: contain;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .time-wrapper::before {
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'/%3E%3C/svg%3E") no-repeat center;
+        }
+
+        input[type="date"],
+        input[type="time"] {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            position: relative;
+            padding-right: 3rem !important;
+            cursor: pointer;
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator,
+        input[type="time"]::-webkit-calendar-picker-indicator {
+            opacity: 0;
+            position: absolute;
+            right: 1rem;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        input[type="date"]::-webkit-inner-spin-button,
+        input[type="time"]::-webkit-inner-spin-button {
+            display: none;
+        }
+
+        input[type="date"]::-webkit-clear-button,
+        input[type="time"]::-webkit-clear-button {
+            display: none;
+        }
+
+        /* Custom date/time picker hover effects */
+        .datetime-wrapper:hover::before {
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .form-group input[type="date"]:hover,
+        .form-group input[type="time"]:hover {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.05);
+        }
+
+        .submit-btn {
+            position: relative;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .btn-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Responsive Design */
+        
+        /* Mobile: 360px – 768px */
+        @media (max-width: 767px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .cta-buttons {
+                gap: 0.5rem;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                padding: 100px 0 60px;
+                min-height: 80vh;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .hero-buttons .btn-primary,
+            .hero-buttons .btn-secondary {
+                width: 100%;
+                max-width: 280px;
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-title p {
+                font-size: 1rem;
+            }
+
+            .table-content {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .table-column {
+                padding: 1.5rem;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .industries-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-container {
+                padding: 2rem;
+            }
+
+            .message-bubble {
+                max-width: 85%;
+            }
+        }
+
+        /* Small Mobile: 360px – 480px */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.6rem;
+            }
+
+            .step-card,
+            .industry-card,
+            .testimonial {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Tablet: 768px – 1024px */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .container {
+                padding: 0 30px;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .table-content {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            .steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .industries-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Desktop: 1024px+ */
+        @media (min-width: 1024px) {
+            .container {
+                padding: 0 40px;
+            }
+
+            .hero h1 {
+                font-size: 4rem;
+            }
+
+            .steps-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .industries-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Large Desktop: 1440px+ */
+        @media (min-width: 1440px) {
+            .container {
+                max-width: 1400px;
+                padding: 0 50px;
+            }
+
+            .hero h1 {
+                font-size: 4.5rem;
+            }
+
+            .section-title h2 {
+                font-size: 3rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Subtle glow effect */
+        .glow {
+            position: relative;
+        }
+
+        .glow::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            border-radius: inherit;
+            filter: blur(20px);
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        .glow:hover::after {
+            opacity: 0.3;
+        }
+
+        /* Prevent horizontal scroll */
+        html, body {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+
+        * {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body data-theme="dark">
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">HussleAI</a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#demo">Demo</a></li>
+                <li><a href="#industries">Industries</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="#features">Features</a>
+                <a href="#demo">Demo</a>
+                <a href="#industries">Industries</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#booking">Get Started Free</a>
+                <a href="#booking">Book a Free Demo</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        <div class="particles" id="particles"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>AI Agents That Accelerate Your Hustle</h1>
+                <p>Automate sales, streamline support, and boost productivity—HussleAI empowers teams to do more with less.</p>
+                <div class="hero-buttons">
+                    <a href="#booking" class="btn-primary glow">Get Started Free</a>
+                    <a href="#booking" class="btn-secondary">Book a Free Demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison-section" id="features">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Why Choose AI Agents Over Traditional Chatbots?</h2>
+                <p>See the difference intelligent AI agents make compared to rule-based chatbots</p>
+            </div>
+            <div class="comparison-table fade-in">
+                <div class="table-header">
+                    <h3>Traditional Chatbots vs. HussleAI Agents</h3>
+                </div>
+                <div class="table-content">
+                    <div class="table-column">
+                        <h4>Feature</h4>
+                        <div class="feature-item">
+                            <span>Response Type</span>
+                        </div>
+                        <div class="feature-item">
+                            <span>Flexibility</span>
+                        </div>
+                        <div class="feature-item">
+                            <span>Problem Solving</span>
+                        </div>
+                        <div class="feature-item">
+                            <span>Resolution Rate</span>
+                        </div>
+                        <div class="feature-item">
+                            <span>Learning Ability</span>
+                        </div>
+                    </div>
+                    <div class="table-column">
+                        <h4>Traditional Chatbots</h4>
+                        <div class="feature-item">
+                            <i class="fas fa-times feature-icon cross"></i>
+                            <span>Scripted Responses</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-times feature-icon cross"></i>
+                            <span>Limited Flexibility</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-times feature-icon cross"></i>
+                            <span>Predefined Workflows</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-times feature-icon cross"></i>
+                            <span>Low Resolution Rate</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-times feature-icon cross"></i>
+                            <span>Static Knowledge</span>
+                        </div>
+                    </div>
+                    <div class="table-column">
+                        <h4>HussleAI Agents</h4>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon check"></i>
+                            <span>Intelligent Thinking</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon check"></i>
+                            <span>Adaptive Interactions</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon check"></i>
+                            <span>Dynamic Problem Solving</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon check"></i>
+                            <span>High Autonomy</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check feature-icon check"></i>
+                            <span>Continuous Learning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo -->
+    <section class="demo-section" id="demo">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>See HussleAI in Action</h2>
+                <p>Watch how our AI agent handles a real customer request with intelligence and efficiency</p>
+            </div>
+            <div class="demo-container fade-in">
+                <div class="demo-header">
+                    <div class="demo-avatar">AI</div>
+                    <div>
+                        <h4>HussleAI Agent</h4>
+                        <p>Customer Support Specialist</p>
+                    </div>
+                </div>
+                <div class="chat-message message-user">
+                    <div class="message-bubble">Hi, I need to change my delivery address for order #12345. Can you help?</div>
+                </div>
+                <div class="chat-message message-ai">
+                    <div class="message-bubble">Of course! I can help you update the delivery address for order #12345. Let me check the current status of your order first.</div>
+                </div>
+                <div class="chat-message message-ai">
+                    <div class="message-bubble">Great news! Your order hasn't shipped yet, so I can update the address. What's the new delivery address you'd like to use?</div>
+                </div>
+                <div class="chat-message message-user">
+                    <div class="message-bubble">Please change it to 123 Main Street, New York, NY 10001</div>
+                </div>
+                <div class="chat-message message-ai">
+                    <div class="message-bubble">Perfect! I've successfully updated your delivery address to 123 Main Street, New York, NY 10001. You'll receive a confirmation email shortly. Is there anything else I can help you with today?</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Setup Steps -->
+    <section class="setup-section">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Quick Setup & Deployment</h2>
+                <p>Get your AI agent up and running in minutes, not months</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card fade-in">
+                    <div class="step-number">1</div>
+                    <h3>Import Your Data & Train Your AI Agent</h3>
+                    <p>Upload your knowledge base, FAQs, and training materials to create a personalized AI agent</p>
+                </div>
+                <div class="step-card fade-in">
+                    <div class="step-number">2</div>
+                    <h3>Customize Appearance</h3>
+                    <p>Match your brand with custom colors, logos, and messaging to create a seamless experience</p>
+                </div>
+                <div class="step-card fade-in">
+                    <div class="step-number">3</div>
+                    <h3>Define Behaviors and Actions</h3>
+                    <p>Set up workflows, escalation rules, and automated actions for different scenarios</p>
+                </div>
+                <div class="step-card fade-in">
+                    <div class="step-number">4</div>
+                    <h3>Embed on Your Website</h3>
+                    <p>Add the AI agent to your website with a simple code snippet or plugin</p>
+                </div>
+                <div class="step-card fade-in">
+                    <div class="step-number">5</div>
+                    <h3>Integrate with Your Tools</h3>
+                    <p>Connect with CRM, helpdesk, and other business tools for seamless operations</p>
+                </div>
+                <div class="step-card fade-in">
+                    <div class="step-number">6</div>
+                    <h3>Monitor Conversations & Gain Insights</h3>
+                    <p>Track performance, analyze conversations, and continuously improve your AI agent</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry Use Cases -->
+    <section class="industries-section" id="industries">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Industry Use Cases</h2>
+                <p>HussleAI agents are transforming businesses across every sector</p>
+            </div>
+            <div class="industries-grid">
+                <div class="industry-card fade-in">
+                    <div class="industry-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Customer Support</h3>
+                    <p>Provide 24/7 instant support, resolve common issues, and escalate complex queries to human agents</p>
+                </div>
+                <div class="industry-card fade-in">
+                    <div class="industry-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Human Resources</h3>
+                    <p>Streamline employee onboarding, answer policy questions, and manage leave requests automatically</p>
+                </div>
+                <div class="industry-card fade-in">
+                    <div class="industry-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>E-commerce</h3>
+                    <p>Guide customers through purchases, handle returns, and provide personalized product recommendations</p>
+                </div>
+                <div class="industry-card fade-in">
+                    <div class="industry-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Healthcare</h3>
+                    <p>Schedule appointments, provide health information, and assist with patient inquiries securely</p>
+                </div>
+                <div class="industry-card fade-in">
+                    <div class="industry-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Education</h3>
+                    <p>Support students with course information, assignment help, and administrative queries</p>
+                </div>
+                <div class="industry-card fade-in">
+                    <div class="industry-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>Retail</h3>
+                    <p>Assist with product discovery, inventory checks, and provide personalized shopping experiences</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>What Our Clients Say</h2>
+                <p>Join thousands of businesses that have transformed their operations with HussleAI</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial fade-in">
+                    <div class="testimonial-content">
+                        "HussleAI has revolutionized our customer support. We've seen a 75% reduction in response time and our customer satisfaction scores have never been higher. The AI agent handles complex queries with ease."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SM</div>
+                        <div class="author-info">
+                            <h4>Sarah Mitchell</h4>
+                            <p>Head of Customer Success, TechFlow</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial fade-in">
+                    <div class="testimonial-content">
+                        "The ROI was immediate. Our sales team can now focus on closing deals while the AI agent qualifies leads and schedules meetings. We've increased our conversion rate by 40%."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JD</div>
+                        <div class="author-info">
+                            <h4>James Davis</h4>
+                            <p>VP of Sales, GrowthCorp</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial fade-in">
+                    <div class="testimonial-content">
+                        "Implementation was seamless and the ongoing support is exceptional. Our AI agent feels like a natural extension of our team and our customers love the instant, accurate responses."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">LW</div>
+                        <div class="author-info">
+                            <h4>Lisa Wang</h4>
+                            <p>Operations Director, ServicePro</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form -->
+    <section class="booking-section" id="booking">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Book a Free Demo Call</h2>
+                <p>See how HussleAI can transform your business workflows with powerful AI agents</p>
+            </div>
+            <div class="booking-container fade-in">
+                <form id="demoForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Tell us about your business needs and what you'd like to discuss..." required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Preferred Date *</label>
+                            <div class="datetime-wrapper">
+                                <input type="date" id="date" name="date" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Preferred Time *</label>
+                            <div class="datetime-wrapper time-wrapper">
+                                <input type="time" id="time" name="time" required>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        <span class="btn-text">Book My Demo</span>
+                        <span class="btn-loading" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i> Booking...
+                        </span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Product</h3>
+                    <a href="#">Features</a>
+                    <a href="#">Pricing</a>
+                    <a href="#">Integrations</a>
+                    <a href="#">API Documentation</a>
+                    <a href="#">Security</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <a href="#">About Us</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Press</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <a href="#">Help Center</a>
+                    <a href="#">Documentation</a>
+                    <a href="#">Case Studies</a>
+                    <a href="#">Webinars</a>
+                    <a href="#">Community</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter for the latest updates and insights.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit">Subscribe</button>
+                    </div>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 HussleAI. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Create enhanced particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 80;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 12 + 's';
+                particle.style.animationDuration = (Math.random() * 8 + 8) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        }
+
+        // Theme Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            const themeIcon = document.getElementById('theme-icon');
+            
+            document.body.setAttribute('data-theme', savedTheme);
+            themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+
+            // Create particles
+            createParticles();
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // Close mobile menu if open
+                    document.getElementById('mobileMenu').classList.remove('active');
+                    
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = document.body.getAttribute('data-theme') === 'dark' 
+                    ? 'rgba(15, 15, 15, 0.98)' 
+                    : 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = document.body.getAttribute('data-theme') === 'dark' 
+                    ? 'rgba(15, 15, 15, 0.95)' 
+                    : 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Enhanced form submission with Google Calendar integration
+        document.getElementById('demoForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('.submit-btn');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const btnLoading = submitBtn.querySelector('.btn-loading');
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            btnText.style.display = 'none';
+            btnLoading.style.display = 'inline-block';
+            
+            try {
+                // Get form data
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData);
+                
+                // Validate required fields
+                if (!data.name || !data.email || !data.message || !data.date || !data.time) {
+                    throw new Error('Please fill in all required fields.');
+                }
+                
+                // Create Google Calendar event
+                await createGoogleCalendarEvent(data);
+                
+                // Show success message
+                showSuccessMessage(data.name);
+                
+                // Reset form
+                this.reset();
+                
+            } catch (error) {
+                console.error('Booking error:', error);
+                showErrorMessage(error.message);
+            } finally {
+                // Reset button state
+                submitBtn.disabled = false;
+                btnText.style.display = 'inline-block';
+                btnLoading.style.display = 'none';
+            }
+        });
+
+        // Google Calendar integration function
+        async function createGoogleCalendarEvent(formData) {
+            const { name, email, message, date, time } = formData;
+            
+            // Create start and end times
+            const startDateTime = new Date(`${date}T${time}:00`);
+            const endDateTime = new Date(startDateTime.getTime() + 60 * 60 * 1000); // 1 hour meeting
+            
+            // Format dates for Google Calendar
+            const startTime = startDateTime.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+            const endTime = endDateTime.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+            
+            // Create Google Calendar URL
+            const calendarUrl = new URL('https://calendar.google.com/calendar/render');
+            calendarUrl.searchParams.set('action', 'TEMPLATE');
+            calendarUrl.searchParams.set('text', `HussleAI Demo Call - ${name}`);
+            calendarUrl.searchParams.set('dates', `${startTime}/${endTime}`);
+            calendarUrl.searchParams.set('details', `Demo call with ${name} (${email})\n\nMessage: ${message}\n\nMeeting Link: [Add your meeting link here]`);
+            calendarUrl.searchParams.set('location', 'Video Call');
+            calendarUrl.searchParams.set('add', email);
+            
+            // Open Google Calendar in new tab
+            window.open(calendarUrl.toString(), '_blank');
+            
+            // Simulate API call delay
+            await new Promise(resolve => setTimeout(resolve, 1500));
+        }
+
+        // Success message function
+        function showSuccessMessage(name) {
+            const message = `
+                <div style="
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: var(--dark-surface);
+                    border: 2px solid var(--primary-color);
+                    border-radius: 16px;
+                    padding: 2rem;
+                    max-width: 400px;
+                    text-align: center;
+                    z-index: 10000;
+                    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                ">
+                    <div style="color: var(--primary-color); font-size: 3rem; margin-bottom: 1rem;">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Booking Confirmed!</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                        Thank you ${name}! Your demo has been scheduled. Please check your Google Calendar and email for confirmation details.
+                    </p>
+                    <button onclick="this.parentElement.remove(); this.parentElement.previousElementSibling.remove();" style="
+                        background: var(--primary-color);
+                        color: white;
+                        border: none;
+                        padding: 0.75rem 1.5rem;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        font-weight: 600;
+                    ">Close</button>
+                </div>
+                <div style="
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.5);
+                    z-index: 9999;
+                " onclick="this.nextElementSibling.remove(); this.remove();"></div>
+            `;
+            
+            document.body.insertAdjacentHTML('beforeend', message);
+        }
+
+        // Error message function
+        function showErrorMessage(errorText) {
+            const message = `
+                <div style="
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: var(--dark-surface);
+                    border: 2px solid #ef4444;
+                    border-radius: 16px;
+                    padding: 2rem;
+                    max-width: 400px;
+                    text-align: center;
+                    z-index: 10000;
+                    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                ">
+                    <div style="color: #ef4444; font-size: 3rem; margin-bottom: 1rem;">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Booking Error</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                        ${errorText}
+                    </p>
+                    <button onclick="this.parentElement.remove(); this.parentElement.previousElementSibling.remove();" style="
+                        background: #ef4444;
+                        color: white;
+                        border: none;
+                        padding: 0.75rem 1.5rem;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        font-weight: 600;
+                    ">Try Again</button>
+                </div>
+                <div style="
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.5);
+                    z-index: 9999;
+                " onclick="this.nextElementSibling.remove(); this.remove();"></div>
+            `;
+            
+            document.body.insertAdjacentHTML('beforeend', message);
+        }
+
+        // Set minimum date for demo booking
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInput = document.getElementById('date');
+            const timeInput = document.getElementById('time');
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            dateInput.min = tomorrow.toISOString().split('T')[0];
+            
+            // Set default time to 9:00 AM
+            timeInput.value = '09:00';
+        });
+
+        // Industry card interactions
+        document.querySelectorAll('.industry-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const industry = this.querySelector('h3').textContent;
+                alert(`Learn more about HussleAI solutions for ${industry}. Contact us for a personalized demo!`);
+            });
+        });
+
+        // Add parallax effect to floating shapes
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const shapes = document.querySelectorAll('.shape');
+            
+            shapes.forEach((shape, index) => {
+                const speed = 0.5 + (index * 0.1);
+                shape.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (!mobileMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Prevent body scroll when mobile menu is open
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        mobileMenuToggle.addEventListener('click', function() {
+            document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('active') ? 'hidden' : 'auto';
+        });
+
+        // Performance optimization for scroll events
+        let ticking = false;
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            const shapes = document.querySelectorAll('.shape');
+            
+            shapes.forEach((shape, index) => {
+                const speed = 0.5 + (index * 0.1);
+                shape.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
+    </script>
+</body>
+</html>
+
